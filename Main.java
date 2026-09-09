@@ -1,27 +1,25 @@
-package com.project.matrix;
+package com.project.identity;
 
-import java.util.Arrays;
+import java.util.Scanner;
 
 /**
- * Example program to demonstrate MatrixValidator functionality.
+ * Demonstration program for extracting the year from an identity card number.
  */
 public class Main {
 
     public static void main(String[] args) {
-        // Sample 2x2 transition matrix
-        double[][] sampleMatrix = {
-            {0.7, 0.3},
-            {0.2, 0.8}
-        };
+        // Sample input from the specification: 11-digit ID number
+        long sampleId = 86021912345L;
 
-        // 1. Validate if matrix is square
-        boolean isSquare = MatrixValidator.isSquareMatrix(sampleMatrix);
-        System.out.println("Is the matrix square? " + isSquare);
+        System.out.println("=== Identity Card Year Extractor ===");
+        System.out.println("Input ID number: " + sampleId);
 
-        // 2. Compute row sums
-        if (isSquare) {
-            double[] rowSums = MatrixValidator.getRowSums(sampleMatrix);
-            System.out.println("Row sums: " + Arrays.toString(rowSums));
+        try {
+            // Process and extract the year
+            int extractedYear = YearExtractor.extractYearFromId(sampleId);
+            System.out.println("Extracted Year: " + extractedYear);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }
